@@ -358,6 +358,7 @@ class OpenSSLConan(ConanFile):
 
         if self.settings.os == "Android":
             args.append(f" -D__ANDROID_API__={str(self.settings.os.api_level)}")  # see NOTES.ANDROID
+            args.append(" -mno-outline-atomics")  # fix atomics - may be needed only for arch64
         if self.settings.os == "Windows":
             if self.options.enable_capieng:
                 args.append("enable-capieng")
